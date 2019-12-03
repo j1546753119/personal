@@ -1,4 +1,4 @@
-package com.example.springbootcache.config;
+package com.example.springbootcache.test01.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -32,12 +32,10 @@ public class CacheConfig {
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()))
                 .disableCachingNullValues();
 
-        RedisCacheManager redisCacheManager = RedisCacheManager.builder(connectionFactory)
+        return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(config)
                 .transactionAware()
                 .build();
-
-        return redisCacheManager;
     }
 
     @Bean(name = "redisTemplate")
